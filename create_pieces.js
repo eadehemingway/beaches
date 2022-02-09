@@ -20,14 +20,14 @@ const mock_data = [
 let randomX = Common.random(0, width+width/2),
     randomY = Common.random(-height/2,height+height/4);
 
-const bodies = mock_data.map(d=> {
+const bodies = data.map(d=> {
     var path = Matter.Vertices.fromPath(d.path)
 
     return  Bodies.fromVertices(randomX, randomY, path, {
       density: .00008,
-      frictionAir: 0.006,
+      frictionAir: 0.08,
       restitution: 0.3,
-      friction: 1,
+      friction: 0.1,
       color: d.color,
       render: {
         sprite: {
@@ -38,4 +38,9 @@ const bodies = mock_data.map(d=> {
       }
        })
   })
+
+  function updateBodies (){
+    World.remove(world, bodies)
+    World.add(world, bodies)
+  }
   World.add(world, bodies);
