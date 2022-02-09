@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+  }
+  div {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+  /* backgrounds */
+  .tan, .red, .pink, .blue, .magenta {
+    transition: background-color .2s ease-in;
+  }
+  .tan {
+    background-color: #F0E8D8;
+  }
+  .red {
+    background-color: #F8333E;
+  }
+  .pink {
+    background-color: #C8878D;
+  }
+  .blue {
+    background-color: #95A8CB;
+  }
+  .magenta {
+    background-color: #AB004F;
+  }
