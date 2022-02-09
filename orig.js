@@ -187,6 +187,7 @@ var i = 0;
   };
 
 Events.on(mouseConstraint, "mouseup", function(event) {
+
   World.add(world, bodies());
   document.getElementById('canvas').className = 'section ' + nextItem();
 });
