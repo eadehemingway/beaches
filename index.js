@@ -37,11 +37,11 @@ Render.run(render);
 // create world
 var world = engine.world;
 world.gravity.x = 0;
-world.gravity.y = 0.0;
+world.gravity.y = 0.01;
 world.bodies = [];
 
 // create a body with an attractor
-var attractiveBodyOne = Bodies.circle(200, 300, 50, {
+var attractiveBodyOne = Bodies.circle(width/2, height/2, 1, {
 
   isStatic: true,
 
@@ -84,16 +84,14 @@ let randomX = Common.random(0, width+width/2),
     randomY = Common.random(-height/2,height+height/4);
 
 
-
 const bodies = data.map(d=> {
-  console.log('d:', d.path)
   var path = Matter.Vertices.fromPath(d.path)
 
   return  Bodies.fromVertices(randomX, randomY, path, {
-    density: .000008,
-    frictionAir: 0.06,
+    density: .00008,
+    frictionAir: 0.006,
     restitution: 0.3,
-    friction: 0.1,
+    friction: 1,
     blue: true,
     render: {
       sprite: {
