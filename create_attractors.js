@@ -1,6 +1,7 @@
 const one_attractor_button = document.getElementById('one_attractor')
 const three_attractor_button = document.getElementById('three_attractors')
-const line_up_button = document.getElementById('line_up')
+const line_up_vertical = document.getElementById('line_up_vertical')
+const line_up_horizontal = document.getElementById('line_up_horizontal')
 
 let attractor_bodies=[]
 
@@ -52,7 +53,7 @@ three_attractor_button.addEventListener('click', (e)=> {
     updateBodies()
 })
 
-line_up_button.addEventListener("click", (d, i)=>{
+line_up_vertical.addEventListener("click", (d, i)=>{
   World.remove(world, attractor_bodies)
   const color_attractors = [{x: 300, y: 0, color: "white"}, {x: 600, y: 0, color: "brown"}, {x: 900, y: 0, color: 'green'}]
 
@@ -73,9 +74,34 @@ line_up_button.addEventListener("click", (d, i)=>{
          }
        });
  })
+ world.gravity.x = 0
  world.gravity.y = 7
   World.add(world, attractor_bodies);
   Engine.update(engine);
   updateBodies()
 
+})
+
+
+line_up_horizontal.addEventListener("click", (d, i)=>{
+  World.remove(world, attractor_bodies)
+  attractor_bodies =  Bodies.circle(window.innerWidth, 500, 10, {
+      isStatic: true,
+      plugin: {
+        attractors: [
+          function(bodyA, bodyB) {
+                  return {
+                      x: (bodyA.position.x - bodyB.position.x) * 1e-6,
+                      y: (bodyA.position.y - bodyB.position.y) * 1e-6,
+                    };
+          }
+        ]
+      }
+    });
+    world.gravity.y = 0
+    world.gravity.x = -7
+
+  World.add(world, attractor_bodies);
+  Engine.update(engine);
+  updateBodies()
 })
