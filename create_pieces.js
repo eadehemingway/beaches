@@ -20,7 +20,7 @@ const mock_data = [
 let randomX = Common.random(0, width+width/2),
     randomY = Common.random(-height/2,height+height/4);
 
-const bodies = data.map(d=> {
+const bodies = data.map((d, i)=> {
     var path = Matter.Vertices.fromPath(d.path)
 
     return  Bodies.fromVertices(randomX, randomY, path, {
@@ -29,6 +29,7 @@ const bodies = data.map(d=> {
       restitution: 0.3,
       friction: 0.1,
       color: d.color,
+      index: i,
       render: {
         sprite: {
           texture: `./assets/${d.image}`,
