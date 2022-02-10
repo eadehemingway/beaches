@@ -11,6 +11,7 @@ var Engine = Matter.Engine,
     Bodies = Matter.Bodies,
     Common = Matter.Common,
     MouseConstraint = Matter.MouseConstraint,
+    Composite = Matter.Composite
     Events = Matter.Events,
     Render = Matter.Render,
     Mouse = Matter.Mouse,
@@ -28,7 +29,7 @@ var render = Render.create({
         wireframes: false,
         showAngleIndicator: false,
         background: 'transparent',
-        height: height,
+        height: 3000,
         width: width
     }
 });
