@@ -2,6 +2,7 @@ const one_attractor_button = document.getElementById('one_attractor')
 const three_attractor_button = document.getElementById('three_attractors')
 const line_up_vertical = document.getElementById('line_up_vertical')
 const line_up_horizontal = document.getElementById('line_up_horizontal')
+const multi_lines = document.getElementById('multi_lines')
 
 let attractor_bodies=[]
 
@@ -63,7 +64,7 @@ line_up_vertical.addEventListener("click", (d, i)=>{
          plugin: {
            attractors: [
              function(bodyA, bodyB) {
-                 if (d.color === bodyB.color){
+              if (d.color === bodyB.color){
                      return {
                          x: (bodyA.position.x - bodyB.position.x) * 1e-6,
                          y: (bodyA.position.y - bodyB.position.y) * 1e-6,
@@ -104,4 +105,40 @@ line_up_horizontal.addEventListener("click", (d, i)=>{
   World.add(world, attractor_bodies);
   Engine.update(engine);
   updateBodies()
+})
+
+// multi_lines.addEventListener("click", (d, i)=>{
+//   World.remove(world, attractor_bodies)
+  // const sizes = [1, 2, 3, 4, 5, 6, 7, 8]
+  // const size_attractors = sizes.map((s, i)=> ({x: (i * 170) +200, y: 140 * (8-i), size: s }))
+
+  // attractor_bodies = size_attractors.map(d=> {
+  //   return Bodies.circle(d.x, d.y, 10, {
+  //        isStatic: true,
+  //        plugin: {
+  //          attractors: [
+  //            function(bodyA, bodyB) {
+  //                if (d.size === bodyB.size){
+  //                    return {
+  //                        x: (bodyA.position.x - bodyB.position.x) * 1e-6,
+  //                        y: (bodyA.position.y - bodyB.position.y) * 1e-6,
+  //                      };
+  //                }
+  //            }
+  //          ]
+  //        }
+  //      });
+//  })
+//  world.gravity.x = 0
+//  world.gravity.y = 7
+//   World.add(world, attractor_bodies);
+//   Engine.update(engine);
+//   updateBodies()
+// })
+multi_lines.addEventListener("click", (d, i)=>{
+  World.remove(world, attractor_bodies)
+   world.gravity.x = 0
+   world.gravity.y = 0
+
+ manualLineUpBodies()
 })

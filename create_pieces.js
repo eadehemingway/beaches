@@ -29,6 +29,8 @@ const bodies = data.map((d, i)=> {
       restitution: 0.3,
       friction: 0.1,
       color: d.color,
+      size: d.size,
+      order: d.order,
       index: i,
       render: {
         sprite: {
@@ -39,9 +41,31 @@ const bodies = data.map((d, i)=> {
       }
        })
   })
+const glass_per_line = {
+1 : {glass_pieces: 1},
+2 : {glass_pieces: 2},
+3 : {glass_pieces: 9},
+4 : {glass_pieces: 11},
+5 : {glass_pieces: 15},
+6 : {glass_pieces: 10},
+7 : {glass_pieces: 11},
+8 : {glass_pieces: 6},
+}
 
-  function updateBodies (){
-    World.remove(world, bodies)
-    World.add(world, bodies)
-  }
-  World.add(world, bodies);
+function manualLineUpBodies(){
+  bodies.forEach(b=> {
+    const pieces_per_line = glass_per_line[b.size].glass_pieces
+    const y_offset = (pieces_per_line * 50 )/2
+    const y_pos =( b.order * 50) + 300
+    Matter.Body.setPosition(b, {x: (100 * b.size), y: y_pos - y_offset })
+
+  })
+
+}
+
+
+function updateBodies (){
+  World.remove(world, bodies)
+  World.add(world, bodies)
+}
+World.add(world, bodies);
