@@ -30,7 +30,7 @@ var render = Render.create({
         showAngleIndicator: false,
         background: 'transparent',
         height: 3000,
-        width: width
+        width: window.innerWidth
     }
 });
 Render.run(render);
@@ -39,6 +39,7 @@ Render.run(render);
 var world = engine.world;
 world.gravity.x = 0;
 world.gravity.y = 0.01;
+// engine.timing.timeScale = 0.3
 world.bodies = [];
 
 

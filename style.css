@@ -24,3 +24,7 @@ body {
   .magenta {
     background-color: #AB004F;
   }
+
+canvas {
+overflow-x: scroll;
+}

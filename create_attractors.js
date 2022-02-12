@@ -3,6 +3,7 @@ const three_attractor_button = document.getElementById('three_attractors')
 const line_up_vertical = document.getElementById('line_up_vertical')
 const line_up_horizontal = document.getElementById('line_up_horizontal')
 const multi_lines = document.getElementById('multi_lines')
+const multi_lines_attractors = document.getElementById('multi_lines_attractors')
 
 let attractor_bodies=[]
 
@@ -84,8 +85,15 @@ line_up_vertical.addEventListener("click", (d, i)=>{
 })
 
 
-line_up_horizontal.addEventListener("click", (d, i)=>{
+line_up_horizontal.addEventListener("click", (d)=>{
   World.remove(world, attractor_bodies)
+  const clossness = 0.0023 // the smaller the number the tighter the pieces
+
+  bodies.forEach((b,index)=> {
+    Matter.Body.setMass(b, clossness * index)
+
+
+  })
   attractor_bodies =  Bodies.circle(window.innerWidth, 500, 10, {
       isStatic: true,
       plugin: {
@@ -100,45 +108,64 @@ line_up_horizontal.addEventListener("click", (d, i)=>{
       }
     });
     world.gravity.y = 0
-    world.gravity.x = -7
+    world.gravity.x = -14
 
   World.add(world, attractor_bodies);
   Engine.update(engine);
   updateBodies()
 })
 
-// multi_lines.addEventListener("click", (d, i)=>{
-//   World.remove(world, attractor_bodies)
-  // const sizes = [1, 2, 3, 4, 5, 6, 7, 8]
-  // const size_attractors = sizes.map((s, i)=> ({x: (i * 170) +200, y: 140 * (8-i), size: s }))
-
-  // attractor_bodies = size_attractors.map(d=> {
-  //   return Bodies.circle(d.x, d.y, 10, {
-  //        isStatic: true,
-  //        plugin: {
-  //          attractors: [
-  //            function(bodyA, bodyB) {
-  //                if (d.size === bodyB.size){
-  //                    return {
-  //                        x: (bodyA.position.x - bodyB.position.x) * 1e-6,
-  //                        y: (bodyA.position.y - bodyB.position.y) * 1e-6,
-  //                      };
-  //                }
-  //            }
-  //          ]
-  //        }
-  //      });
-//  })
-//  world.gravity.x = 0
-//  world.gravity.y = 7
-//   World.add(world, attractor_bodies);
-//   Engine.update(engine);
-//   updateBodies()
-// })
 multi_lines.addEventListener("click", (d, i)=>{
   World.remove(world, attractor_bodies)
    world.gravity.x = 0
    world.gravity.y = 0
 
  manualLineUpBodies()
+})
+
+multi_lines_attractors.addEventListener("click", (d, i)=>{
+  World.remove(world, attractor_bodies)
+  const sizes = [1, 2, 3, 4, 5, 6, 7, 8]
+  const size_attractors = sizes.map((s,i)=> {
+    const num_pieces = glass_per_line[s].glass_pieces
+    const offset = (num_pieces * glass_piece_height)/2
+    return {
+      x: 300 + (i*100),
+      y: 500 - offset,
+      size: s
+    }
+  })
+
+   attractor_bodies = size_attractors.map(d=> {
+     return Bodies.circle(d.x, d.y, 10, {
+          isStatic: true,
+          plugin: {
+            attractors: [
+              function(bodyA, bodyB) {
+
+               if (d.size === bodyB.size){
+                    const clossness = 0.008 // the smaller the number the tighter the pieces
+                    Matter.Body.setMass(bodyB, clossness * bodyB.order)
+                    const y = (bodyA.position.y - bodyB.position.y) * 0.000001
+                    const x = (bodyA.position.x - bodyB.position.x) * 0.000001
+
+                      return {
+                          x,
+                          y
+                        };
+                  }
+              },
+            ],
+
+          }
+        });
+  })
+
+
+  world.gravity.x = 0
+  world.gravity.y = 7
+   World.add(world, attractor_bodies);
+   Engine.update(engine);
+   updateBodies()
+
 })

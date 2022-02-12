@@ -25,7 +25,7 @@ const bodies = data.map((d, i)=> {
 
     return  Bodies.fromVertices(randomX, randomY, path, {
       density: .00008,
-      frictionAir: 0.08,
+      frictionAir: 0.1,
       restitution: 0.3,
       friction: 0.1,
       color: d.color,
@@ -51,12 +51,13 @@ const glass_per_line = {
 7 : {glass_pieces: 11},
 8 : {glass_pieces: 6},
 }
+const glass_piece_height = 60
 
 function manualLineUpBodies(){
   bodies.forEach(b=> {
     const pieces_per_line = glass_per_line[b.size].glass_pieces
-    const y_offset = (pieces_per_line * 50 )/2
-    const y_pos =( b.order * 50) + 300
+    const y_offset = (pieces_per_line * glass_piece_height )/2
+    const y_pos =( b.order * glass_piece_height) + 300
     Matter.Body.setPosition(b, {x: (100 * b.size), y: y_pos - y_offset })
 
   })
@@ -67,5 +68,9 @@ function manualLineUpBodies(){
 function updateBodies (){
   World.remove(world, bodies)
   World.add(world, bodies)
+  // setTimeout(()=>
+  // bodies.forEach((b)=> {
+  //   Matter.Sleeping.set(b, true)
+  // }), 20000)
 }
 World.add(world, bodies);
