@@ -40,8 +40,8 @@ function updateBodies (){
   World.remove(world, bodies)
   World.add(world, bodies)
   // setTimeout(()=>{
-  //   bodies.forEach(b=>   Matter.Sleeping.set(b, true))
-  // }, 1000)
+  //   bodies.forEach(b=>  b.isStatic = true)
+  // }, 10000)
   }
 
 World.add(world, bodies);
