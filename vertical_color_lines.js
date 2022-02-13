@@ -8,9 +8,9 @@ vertical_color_lines.addEventListener("click", (d, i)=>{
     const clossness = 0.007 // the smaller the number the tighter the pieces
 
     // hacky way of trying to get the mass to be such that they line up. would be better if we could reset to the original mass but dont know how
-    bodies.forEach((b,index)=> {
-      Matter.Body.setMass(b, clossness * (b.size+ b.order))
-    })
+    // bodies.forEach((b,index)=> {
+    //   Matter.Body.setMass(b, clossness * (b.size+ b.order))
+    // })
     attractor_bodies = color_attractors.map(d=> {
       return Bodies.circle(d.x, d.y, 10, {
            isStatic: true,

@@ -1,5 +1,4 @@
 const one_attractor_button = document.getElementById('one_attractor')
-
 one_attractor_button.addEventListener('click', (e)=> {
     reset()
     attractor_bodies =  Bodies.circle(600, 300, 10, {
