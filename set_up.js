@@ -44,3 +44,11 @@ world.bodies = [];
 
 
 Engine.run(engine);
+
+let attractor_bodies=[]
+
+function reset(){
+    World.remove(world, attractor_bodies)
+    world.gravity.x = 0;
+    world.gravity.y = 0.01;
+  }
