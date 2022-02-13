@@ -12,6 +12,8 @@ three_attractor_button.addEventListener('click', (e)=> {
              attractors: [
                function(bodyA, bodyB) {
                    if (d.color === bodyB.color){
+                // Matter.Body.setMass(bodyB, 0.08)
+
                        return {
                            x: (bodyA.position.x - bodyB.position.x) * 1e-6,
                            y: (bodyA.position.y - bodyB.position.y) * 1e-6,

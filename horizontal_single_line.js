@@ -6,9 +6,9 @@ horizontal_single_line.addEventListener("click", (d)=>{
 
     const clossness = 0.0023 // the smaller the number the tighter the pieces
 
-    bodies.forEach((b,index)=> {
-      Matter.Body.setMass(b, clossness * (index +1))
-    })
+    // bodies.forEach((b,index)=> {
+    //   Matter.Body.setMass(b, clossness * (index +1))
+    // })
     attractor_bodies =  Bodies.circle(window.innerWidth, 500, 10, {
         isStatic: true,
         plugin: {

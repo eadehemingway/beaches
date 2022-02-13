@@ -7,6 +7,7 @@ one_attractor_button.addEventListener('click', (e)=> {
         plugin: {
           attractors: [
             function(bodyA, bodyB) {
+                // Matter.Body.setMass(bodyB, 0.2)
                     return {
                         x: (bodyA.position.x - bodyB.position.x) * 1e-6,
                         y: (bodyA.position.y - bodyB.position.y) * 1e-6,

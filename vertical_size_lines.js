@@ -23,7 +23,7 @@ vertical_size_lines.addEventListener("click", (d, i)=>{
 
                if (d.size === bodyB.size){
                     const clossness = 0.008 // the smaller the number the tighter the pieces
-                    Matter.Body.setMass(bodyB, clossness * bodyB.order)
+                    // Matter.Body.setMass(bodyB, clossness * bodyB.order)
                     const y = (bodyA.position.y - bodyB.position.y) * 0.000001
                     const x = (bodyA.position.x - bodyB.position.x) * 0.000001
 
