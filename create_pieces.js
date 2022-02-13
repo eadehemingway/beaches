@@ -36,8 +36,6 @@ const glass_per_line = {
 }
 const glass_piece_height = 60
 
-
-
 function updateBodies (){
   World.remove(world, bodies)
   World.add(world, bodies)
@@ -45,4 +43,5 @@ function updateBodies (){
   //   bodies.forEach(b=>   Matter.Sleeping.set(b, true))
   // }, 1000)
   }
+
 World.add(world, bodies);
